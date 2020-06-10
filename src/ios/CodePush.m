@@ -408,8 +408,6 @@ StatusReport* rollbackStatusReport = nil;
     // is running 4.0.0+, and fallback to directly using the WebView otherwise.
 #if (WK_WEB_VIEW_ONLY && defined(__CORDOVA_4_0_0)) || defined(__CORDOVA_4_0_0)
     [self.webViewEngine loadRequest:[NSURLRequest requestWithURL:url]];
-#else
-    [(UIWebView*)self.webView loadRequest:[NSURLRequest requestWithURL:url]];
 #endif
 }
 
