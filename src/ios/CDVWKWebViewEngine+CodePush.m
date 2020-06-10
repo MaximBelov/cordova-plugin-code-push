@@ -98,7 +98,9 @@ NSString* lastLoadedURL = @"";
         CDVViewController* vc = (CDVViewController*)self.viewController;
         NSString* message = [NSString stringWithFormat:@"Failed to load webpage with error: %@", [error localizedDescription]];
         NSLog(@"%@", message);
-        [CDVUserAgentUtil releaseLock:vc.userAgentLockToken];
+        #ifndef __CORDOVA_6_0_0
+            [CDVUserAgentUtil releaseLock:vc.userAgentLockToken];
+        #endif
         NSURL* errorUrl = vc.errorURL;
         if (errorUrl) {
             errorUrl = [NSURL URLWithString:[NSString stringWithFormat:@"?error=%@", [message stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] relativeToURL:errorUrl];
